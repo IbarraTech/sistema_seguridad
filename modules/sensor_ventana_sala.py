@@ -25,13 +25,41 @@ def detectar_ventana():
 
     try:
     while True:
-        if not led_encendido and (GPIO.input(pulsador_encendido_pin) == GPIO.HIGH or GPIO.input(sensor1_pin) == GPIO.HIGH or GPIO.input(sensor2_pin) == GPIO.HIGH or GPIO.input(sensor3_pin) == GPIO.HIGH or GPIO.input(sensor4_pin) == GPIO.HIGH):
+        if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH and not led_encendido:
             GPIO.output(led_pin, GPIO.HIGH)
             led_encendido = True
             time.sleep(0.1)
             envio_correos.envio_correos()
 
-        if led_encendido and GPIO.input(pulsador_apagado_pin) == GPIO.HIGH:
+        elif GPIO.input(pulsador_apagado_pin) == GPIO.HIGH and led_encendido:
+            GPIO.output(led_pin, GPIO.LOW)
+            led_encendido = False
+
+        elif GPIO.input(sensor1_pin) == GPIO.HIGH and not led_encendido:
+            GPIO.output(led_pin, GPIO.HIGH)
+            led_encendido = True
+            time.sleep(0.1)
+            envio_correos.envio_correos()
+
+        elif GPIO.input(sensor2_pin) == GPIO.HIGH and not led_encendido:
+            GPIO.output(led_pin, GPIO.HIGH)
+            led_encendido = True
+            time.sleep(0.1)
+            envio_correos.envio_correos()
+
+        elif GPIO.input(sensor3_pin) == GPIO.HIGH and not led_encendido:
+            GPIO.output(led_pin, GPIO.HIGH)
+            led_encendido = True
+            time.sleep(0.1)
+            envio_correos.envio_correos()
+
+        elif GPIO.input(sensor4_pin) == GPIO.HIGH and not led_encendido:
+            GPIO.output(led_pin, GPIO.HIGH)
+            led_encendido = True
+            time.sleep(0.1)
+            envio_correos.envio_correos()
+
+        elif led_encendido:
             GPIO.output(led_pin, GPIO.LOW)
             led_encendido = False
 
@@ -39,4 +67,4 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 
 
-detectar_ventana()
+detectar_ventana() 
