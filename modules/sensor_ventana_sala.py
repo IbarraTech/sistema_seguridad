@@ -24,61 +24,19 @@ def detectar_ventana():
     led_encendido = False
 
     try:
-        while True:
-            if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH and not led_encendido:
-                GPIO.output(led_pin, GPIO.HIGH)
-                led_encendido = True
-                while GPIO.input(pulsador_apagado_pin) == GPIO.LOW:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
-                time.sleep(0.1)
-                envio_correos.envio_correos()
+    while True:
+        if not led_encendido and (GPIO.input(pulsador_encendido_pin) == GPIO.HIGH or GPIO.input(sensor1_pin) == GPIO.HIGH or GPIO.input(sensor2_pin) == GPIO.HIGH or GPIO.input(sensor3_pin) == GPIO.HIGH or GPIO.input(sensor4_pin) == GPIO.HIGH):
+            GPIO.output(led_pin, GPIO.HIGH)
+            led_encendido = True
+            time.sleep(0.1)
+            envio_correos.envio_correos()
 
-            if GPIO.input(pulsador_apagado_pin) == GPIO.HIGH and led_encendido:
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
+        if led_encendido and GPIO.input(pulsador_apagado_pin) == GPIO.HIGH:
+            GPIO.output(led_pin, GPIO.LOW)
+            led_encendido = False
 
-            if GPIO.input(sensor1_pin) == GPIO.HIGH and not led_encendido:
-                GPIO.output(led_pin, GPIO.HIGH)
-                led_encendido = True
-                while GPIO.input(sensor1_pin) == GPIO.HIGH:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
-                time.sleep(0.1)
-                envio_correos.envio_correos()
+except KeyboardInterrupt:
+    GPIO.cleanup()
 
-            if GPIO.input(sensor2_pin) == GPIO.HIGH and not led_encendido:
-                GPIO.output(led_pin, GPIO.HIGH)
-                led_encendido = True
-                while GPIO.input(sensor2_pin) == GPIO.HIGH:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
-                time.sleep(0.1)
-                envio_correos.envio_correos()
-            if GPIO.input(sensor3_pin) == GPIO.HIGH and not led_encendido:
-                GPIO.output(led_pin, GPIO.HIGH)
-                led_encendido = True
-                while GPIO.input(sensor3_pin) == GPIO.HIGH:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
-                time.sleep(0.1)
-                envio_correos.envio_correos()
-
-            if GPIO.input(sensor4_pin) == GPIO.HIGH and not led_encendido:
-                GPIO.output(led_pin, GPIO.HIGH)
-                led_encendido = True
-                while GPIO.input(sensor4_pin) == GPIO.HIGH:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
-                time.sleep(0.1)
-                envio_correos.envio_correos()
-
-    except KeyboardInterrupt:
-        GPIO.cleanup()
 
 detectar_ventana()
