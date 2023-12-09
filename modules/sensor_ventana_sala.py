@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-import modulos.envio_correos as envio_correos
+import modules.envio_correos as envio_correos
 
 
 def detectar_ventana():
