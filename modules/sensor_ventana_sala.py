@@ -33,7 +33,7 @@ def detectar_ventana():
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
+                envio_correos.envio_correos()
 
             if GPIO.input(pulsador_apagado_pin) == GPIO.HIGH and led_encendido:
                 GPIO.output(led_pin, GPIO.LOW)
@@ -47,7 +47,7 @@ def detectar_ventana():
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
+                envio_correos.envio_correos()
 
             if GPIO.input(sensor2_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
@@ -57,8 +57,7 @@ def detectar_ventana():
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
-
+                envio_correos.envio_correos()
             if GPIO.input(sensor3_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
@@ -67,7 +66,7 @@ def detectar_ventana():
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
+                envio_correos.envio_correos()
 
             if GPIO.input(sensor4_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
@@ -77,10 +76,9 @@ def detectar_ventana():
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
+                envio_correos.envio_correos()
 
     except KeyboardInterrupt:
         GPIO.cleanup()
-        detectar_ventana()
 
 detectar_ventana()
