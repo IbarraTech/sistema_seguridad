@@ -18,26 +18,18 @@ def detectar_ventana():
 
     try:
         while True:
-            if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH and not led_encendido:
+            if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                while GPIO.input(pulsador_apagado_pin) == GPIO.LOW:
-                    pass
-                GPIO.output(led_pin, GPIO.LOW)
-                led_encendido = False
                 time.sleep(0.1)
-                envio_correos()
+                envio_correos.envio_correos()
 
-                # Llamar a la función de notificación
-                # envio_correos(remitente, destinatario, mensaje_correo)
-
-            if GPIO.input(pulsador_apagado_pin) == GPIO.HIGH and led_encendido:
+            if GPIO.input(pulsador_apagado_pin) == GPIO.HIGH:
                 GPIO.output(led_pin, GPIO.LOW)
                 led_encendido = False
 
     except KeyboardInterrupt:
         GPIO.cleanup()
-        detectar_ventana()
 
 
 detectar_ventana()
