@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import modules.envio_correos as envio_correos
 
+
 def detectar_ventana():
     led_pin = 11
     pulsador_encendido_pin = 7
@@ -23,7 +24,8 @@ def detectar_ventana():
 
     led_encendido = False
 
-    try:
+
+try:
     while True:
         if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH and not led_encendido:
             GPIO.output(led_pin, GPIO.HIGH)
@@ -67,4 +69,4 @@ except KeyboardInterrupt:
     GPIO.cleanup()
 
 
-detectar_ventana() 
+detectar_ventana()
