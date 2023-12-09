@@ -29,7 +29,7 @@ def detectar_ventana():
             if GPIO.input(pulsador_encendido_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                time.sleep(0.1)
+                time.sleep(1.0)
                 envio_correos.envio_correos()
 
             elif GPIO.input(pulsador_apagado_pin) == GPIO.HIGH and led_encendido:
@@ -39,25 +39,25 @@ def detectar_ventana():
             elif GPIO.input(sensor1_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                time.sleep(0.1)
+                time.sleep(1.0)
                 envio_correos.envio_correos()
 
             elif GPIO.input(sensor2_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                time.sleep(0.1)
+                time.sleep(1.0)
                 envio_correos.envio_correos()
 
             elif GPIO.input(sensor3_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                time.sleep(0.1)
+                time.sleep(1.0)
                 envio_correos.envio_correos()
 
             elif GPIO.input(sensor4_pin) == GPIO.HIGH and not led_encendido:
                 GPIO.output(led_pin, GPIO.HIGH)
                 led_encendido = True
-                time.sleep(0.1)
+                time.sleep(1.0)
                 envio_correos.envio_correos()
 
             elif led_encendido:
