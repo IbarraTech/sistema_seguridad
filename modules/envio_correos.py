@@ -1,13 +1,13 @@
 import smtplib
 
 
-def envio_correos():
+def envio_correos(nombre_sensor):
     # Configuración
     remitente = " sistemaseguridadvivienda@gmail.com"
     destinatario = ["oscar.marino.ibarra@correounivalle.edu.co",
                     "oscaribarracardona@gmail.com", "adriana.olave@correounivalle.edu.co"]
     asunto = "ALERTA: SENSOR ACTIVO"
-    mensaje = "Hola se ha activado la alarma "
+    mensaje = "Hola se ha activado el sensor de "+nombre_sensor
 
     # Configurar el servidor SMTP de Gmail y el puerto
     servidor_smtp = "smtp.gmail.com"
